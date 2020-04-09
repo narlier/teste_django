@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COE - Narlier</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>{{ pergunta.pergunta }}</h2>
+
+        <ul class="collection">
+            {% for resposta in pergunta.resposta_set.all %}
+            <li class="collection-item">{{ resposta.resposta }} -- {{ resposta.votos }}
+                voto{{ resposta.votos|pluralize }}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'polls:detail' pergunta.id %}" class="waves-effect waves-light btn">Votar Novamente?</a>
+</body>
+
+</html>
